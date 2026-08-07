@@ -1,91 +1,57 @@
-<div align="center">
+# Cart Rescue
 
-# 🛒 Cart Rescue
-### AI-Powered Cart Abandonment Prediction & Recovery System
+### Intelligent Cart Abandonment Prediction & Recovery System
 
-An intelligent e-commerce platform that predicts cart abandonment in real time, explains why a customer is likely to leave, and recommends the best recovery action using Machine Learning and AI.
+Cart Rescue is an intelligent e-commerce solution that helps businesses identify customers who are likely to abandon their shopping carts. The system analyzes customer behavior in real time, predicts abandonment risk using machine learning, and recommends the most suitable action to improve conversion rates.
 
-Built for **AI Build 2026 – Track 2: Cart Rescue**
-
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![Flask](https://img.shields.io/badge/Flask-Backend-black)
-![React](https://img.shields.io/badge/React-Frontend-61DAFB)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-Styling-38B2AC)
-![MongoDB](https://img.shields.io/badge/MongoDB-Database-green)
-![XGBoost](https://img.shields.io/badge/XGBoost-ML-orange)
-
-</div>
+This project was developed as part of **AI Build 2026 – Track 2: Cart Rescue**.
 
 ---
 
-# 📌 Overview
+# Overview
 
-Cart Rescue is an AI-powered intelligent cart recovery system that continuously monitors customer browsing behavior, predicts the probability of cart abandonment, identifies the most likely reason for abandonment, and recommends the best recovery action.
+Cart abandonment is one of the biggest challenges faced by e-commerce platforms. Customers often leave without completing their purchase due to reasons such as payment failures, long checkout processes, or simply losing interest.
 
-Unlike traditional e-commerce systems that send discount coupons to every customer, Cart Rescue makes **smart, data-driven decisions** to maximize conversion while minimizing unnecessary discounts.
-
----
-
-# 🎯 Problem Statement
-
-Customers abandon shopping carts for various reasons such as:
-
-- Payment failures
-- High shipping charges
-- Checkout friction
-- Long decision-making time
-- Price comparison
-- Delivery concerns
-
-Most existing systems treat every customer the same by offering discounts.
-
-**Cart Rescue solves this by using Artificial Intelligence to predict abandonment risk and recommend personalized recovery actions.**
+Cart Rescue continuously monitors customer activity, predicts the likelihood of cart abandonment, explains the reason behind the prediction, and suggests an appropriate recovery action instead of applying the same solution to every customer.
 
 ---
 
-# ✨ Features
+# Features
 
 ## Customer Portal
 
 - Customer Login
-- Browse Products
+- Home Page
+- Product Listing
 - Product Details
-- Add to Cart
+- Shopping Cart
 - Checkout
 - Payment Processing
 
----
-
 ## AI Prediction Engine
 
-- Real-Time Session Monitoring
+- Real-time Session Monitoring
+- Customer Behavior Analysis
 - Feature Extraction
-- XGBoost Prediction Model
-- Abandonment Risk Score
-- Explainable AI
-- Intelligent Decision Agent
-- Personalized Recovery Recommendation
-
----
+- Abandonment Risk Prediction
+- Risk Explanation
+- Intelligent Action Recommendation
 
 ## Admin Dashboard
 
+- Dashboard Overview
 - Live Customer Sessions
 - High Risk Sessions
 - Session Details
-- Risk Explanation
-- Recommended Actions
 - Action History
-- Analytics Dashboard
+- Analytics
 
 ---
 
-# 🏗 System Architecture
+# System Workflow
 
 ```
-                CUSTOMER
-
-Open Website
+Customer Login
       │
       ▼
 Browse Products
@@ -94,7 +60,7 @@ Browse Products
 View Product
       │
       ▼
-Add To Cart
+Add to Cart
       │
       ▼
 Checkout
@@ -103,22 +69,10 @@ Checkout
 Payment Attempt
       │
       ▼
-Payment Success / Failure
+Store Session Events
       │
       ▼
-Backend Stores Events
-
-──────────────────────────────────────
-
-          AI ENGINE
-
-Receive Session Events
-      │
-      ▼
-Feature Extraction
-      │
-      ▼
-XGBoost Prediction
+Machine Learning Prediction
       │
       ▼
 Risk Score
@@ -130,67 +84,14 @@ Decision Agent
 Recommended Action
       │
       ▼
-Store Prediction
-
-──────────────────────────────────────
-
-        ADMIN DASHBOARD
-
-Live Sessions
-      │
-      ▼
-High Risk Sessions
-      │
-      ▼
-Session Details
-      │
-      ▼
-Risk Explanation
-      │
-      ▼
-Recommended Action
-      │
-      ▼
-Notification
-```
-
----
-
-# 🧠 AI Workflow
-
-```
-Customer Activity
-        │
-        ▼
-Session Events
-        │
-        ▼
-Feature Extraction
-        │
-        ▼
-XGBoost Prediction Model
-        │
-        ▼
-Abandonment Risk Score
-        │
-        ▼
-Decision Agent
-        │
-        ▼
-Recommended Recovery Action
-        │
-        ▼
-Save Prediction
-        │
-        ▼
 Dashboard Update
 ```
 
 ---
 
-# 📊 Dashboard
+# Dashboard
 
-The AI dashboard provides complete visibility into customer behavior.
+The dashboard allows administrators to monitor customer sessions in real time.
 
 ### Dashboard Modules
 
@@ -201,34 +102,31 @@ The AI dashboard provides complete visibility into customer behavior.
 - Action History
 - Analytics
 
----
+### Session Details
 
-## Session Details
-
-Clicking on any session displays:
+Selecting a customer session displays:
 
 - Customer ID
 - Products Viewed
 - Cart Value
-- Products Added
-- Time on Site
 - Pages Visited
+- Time on Site
 - Payment Attempts
-- Payment Failed
-- AI Risk Score
+- Payment Status
+- Risk Score
 - Risk Explanation
 - Recommended Action
 
 ---
 
-# ⚙ Technology Stack
+# Technology Stack
 
 ## Frontend
 
 - React.js
 - Tailwind CSS
 - Axios
-- React Router DOM
+- React Router
 
 ## Backend
 
@@ -249,13 +147,13 @@ Clicking on any session displays:
 
 ## Notifications
 
-- Twilio API
+- Twilio
 - WhatsApp API
 - SMS API
 
 ---
 
-# 📂 Project Structure
+# Project Structure
 
 ```
 frontend/
@@ -280,21 +178,21 @@ frontend/
 │   │
 │   ├── pages/
 │   │
-│   │── customer/
-│   │     ├── Login.jsx
-│   │     ├── Home.jsx
-│   │     ├── ProductListing.jsx
-│   │     ├── ProductDetails.jsx
-│   │     ├── Cart.jsx
-│   │     └── Checkout.jsx
+│   ├── customer/
+│   │   ├── Login.jsx
+│   │   ├── Home.jsx
+│   │   ├── ProductListing.jsx
+│   │   ├── ProductDetails.jsx
+│   │   ├── Cart.jsx
+│   │   └── Checkout.jsx
 │   │
-│   │── dashboard/
-│         ├── Dashboard.jsx
-│         ├── LiveSessions.jsx
-│         ├── SessionDetails.jsx
-│         ├── HighRiskSessions.jsx
-│         ├── ActionHistory.jsx
-│         └── Analytics.jsx
+│   └── dashboard/
+│       ├── Dashboard.jsx
+│       ├── LiveSessions.jsx
+│       ├── SessionDetails.jsx
+│       ├── HighRiskSessions.jsx
+│       ├── ActionHistory.jsx
+│       └── Analytics.jsx
 │
 ├── App.jsx
 ├── main.jsx
@@ -308,7 +206,7 @@ frontend/
 
 ---
 
-# 🗄 Database Collections
+# Database Collections
 
 ```
 Users
@@ -326,45 +224,46 @@ Recommendations
 
 ---
 
-# 🤖 Machine Learning Model
+# Machine Learning
 
-The AI engine uses an **XGBoost Classifier** trained on customer session data.
+The prediction engine uses an **XGBoost Classifier** to estimate the probability of cart abandonment.
 
 ### Features Used
 
 - Pages Visited
 - Time on Site
 - Cart Value
-- Product Count
+- Number of Products
 - Checkout Attempts
 - Payment Attempts
 - Payment Failures
 - Purchase History
 
-### Output
+### Prediction Output
 
-- Risk Score (0–100%)
-- Abandonment Reason
-- Recommended Recovery Action
+- Risk Score
+- Risk Level
+- Possible Reason
+- Recommended Action
 
 ---
 
-# 💡 Decision Agent
+# Decision Agent
 
-The Decision Agent determines the most appropriate recovery strategy based on the predicted risk.
+Based on the predicted risk score, the Decision Agent recommends the most suitable action.
 
 Possible recommendations include:
 
 - Do Nothing
-- Send WhatsApp Reminder
+- Send Reminder
 - Retry Payment
-- Offer Discount Coupon
-- Offer Free Shipping
+- Offer Discount
+- Free Shipping
 - Customer Support Assistance
 
 ---
 
-# 🔥 REST APIs
+# REST APIs
 
 ## Customer APIs
 
@@ -373,7 +272,7 @@ POST /login
 
 GET /products
 
-GET /products/:id
+GET /products/{id}
 
 POST /cart
 
@@ -381,8 +280,6 @@ POST /checkout
 
 POST /payment
 ```
-
----
 
 ## Dashboard APIs
 
@@ -396,8 +293,6 @@ GET /high-risk
 GET /analytics
 ```
 
----
-
 ## AI APIs
 
 ```
@@ -408,12 +303,12 @@ POST /recommend
 
 ---
 
-# 🚀 Installation
+# Installation
 
-## Clone Repository
+## Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/cart-rescue.git
+git clone https://github.com/<your-username>/Hackathon1.git
 ```
 
 ## Frontend
@@ -438,104 +333,42 @@ python app.py
 
 ---
 
-# 🌐 Local URLs
+# Local Setup
 
 | Service | URL |
-|----------|-----|
+|---------|-----|
 | Frontend | http://localhost:5173 |
 | Dashboard | http://localhost:5173/dashboard |
 | Backend | http://localhost:5000 |
 
 ---
 
-# 📈 Project Workflow
+# Future Improvements
 
-```
-Customer Login
-      │
-      ▼
-Browse Products
-      │
-      ▼
-Add to Cart
-      │
-      ▼
-Checkout
-      │
-      ▼
-Payment Attempt
-      │
-      ▼
-Store Session Events
-      │
-      ▼
-AI Prediction
-      │
-      ▼
-Risk Score
-      │
-      ▼
-Decision Agent
-      │
-      ▼
-Recommendation
-      │
-      ▼
-Dashboard
-      │
-      ▼
-Admin Notification
-```
+- Personalized recovery strategies
+- Email notifications
+- Explainable AI visualizations
+- Cloud deployment
+- Real-time event streaming
+- Performance monitoring
+- Advanced analytics
 
 ---
 
-# 🔮 Future Enhancements
+# Team
 
-- Deep Learning Models (LSTM / Transformers)
-- Reinforcement Learning
-- Kafka Event Streaming
-- Explainable AI (SHAP)
-- Cloud Deployment (AWS)
-- Kubernetes Deployment
-- Real-Time WebSocket Dashboard
-- Personalized Offers
-- Dynamic Pricing Integration
+Developed by:
+
+- P. Nithish
+- Tallapaneni Sri Dhruti
+- Akhila koppolu
 
 ---
 
-# 🏆 Key Highlights
+# License
 
-- Real-Time Cart Monitoring
-- AI-Based Risk Prediction
-- Explainable Machine Learning
-- Intelligent Decision Agent
-- Live Admin Dashboard
-- WhatsApp & SMS Integration
-- Modular Architecture
-- Scalable REST APIs
-- MongoDB Session Storage
-- Enterprise-Ready Design
+This project was developed for the **AI Build 2026 Hackathon** as an academic and demonstration project.
 
 ---
 
-# 👨‍💻 Team
-
-**Project:** Cart Rescue – AI-Powered Cart Abandonment Prediction & Recovery
-
-Developed as part of **AI Build 2026 – Track 2: Cart Rescue**
-
----
-
-# 📜 License
-
-This project is intended for educational and hackathon purposes.
-
----
-
-<div align="center">
-
-### ⭐ If you like this project, don't forget to Star the repository!
-
-Made with ❤️ using React, Flask, MongoDB & AI
-
-</div>
+Thank you for taking the time to review our project.
