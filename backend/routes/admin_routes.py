@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from database import (
     sessions_collection,
     events_collection,
@@ -58,6 +58,9 @@ def dashboard():
 # ============================================================
 # LIVE SESSIONS
 # ============================================================
+# ============================================================
+# LIVE / ALL SESSIONS (with status)
+# ============================================================
 @admin_routes.route("/api/admin/sessions/live", methods=["GET"])
 def live_sessions():
     user_id = request.args.get("user_id")
@@ -66,10 +69,17 @@ def live_sessions():
 
     sessions = list(
         sessions_collection.find(
-            {"status": "active"},
+            {},
             {"_id": 0}
-        ).sort("last_activity", -1).limit(50)
+        ).sort("last_activity", -1).limit(100)
     )
+
+    # Simple status
+    for s in sessions:
+        if s.get("status") == "active" or s.get("active") is True:
+            s["status"] = "active"
+        else:
+            s["status"] = "inactive"
 
     return jsonify({"success": True, "sessions": sessions})
 
@@ -89,6 +99,12 @@ def high_risk_sessions():
             {"_id": 0}
         ).sort("last_activity", -1).limit(50)
     )
+
+    for s in sessions:
+        if s.get("status") == "active" or s.get("active") is True:
+            s["status"] = "active"
+        else:
+            s["status"] = "inactive"
 
     return jsonify({"success": True, "sessions": sessions})
 

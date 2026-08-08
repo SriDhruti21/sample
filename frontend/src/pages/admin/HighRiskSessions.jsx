@@ -25,6 +25,7 @@ function HighRiskSessions() {
           <thead>
             <tr>
               <th>Session ID</th>
+              <th>Status</th>
               <th>Risk Score</th>
               <th>Scenario</th>
               <th>Recommended Action</th>
@@ -34,7 +35,12 @@ function HighRiskSessions() {
           <tbody>
             {sessions.map((s) => (
               <tr key={s.session_id}>
-                <td>{s.session_id?.slice(0, 10)}...</td>
+                <td>{s.session_id?.slice(0, 12)}...</td>
+                <td>
+                  <span className={`status-badge status-${s.status}`}>
+                    {s.status === "active" ? "🟢 Active" : "⚪ Inactive"}
+                  </span>
+                </td>
                 <td>{s.risk_score ?? "—"}</td>
                 <td>{s.scenario || "—"}</td>
                 <td>{s.recommended_action || "—"}</td>
@@ -50,6 +56,7 @@ function HighRiskSessions() {
             ))}
           </tbody>
         </table>
+
         {sessions.length === 0 && (
           <p className="empty-text">No high-risk sessions</p>
         )}
