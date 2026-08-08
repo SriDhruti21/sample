@@ -14,78 +14,93 @@ Cart abandonment is a common challenge faced by e-commerce platforms. Customers 
 
 Cart Rescue continuously monitors customer sessions, analyzes behavioral patterns using machine learning, predicts abandonment risk, and recommends the most suitable action instead of applying the same strategy to every customer.
 
+The platform supports two user roles:
+- **Customer** – Shop, add to cart, checkout, and make payments
+- **Super Admin** – Monitor live sessions, review high-risk sessions, accept/ignore AI recommendations, and trigger recovery actions via SMS/Call
+
 ---
 
 # Features
 
 ## Customer Portal
-
-- Customer Login
-- Home Page
-- Product Listing
-- Product Details
-- Shopping Cart
-- Checkout
-- Payment Processing
+- Customer Registration & Login
+- Home Page with Featured Products
+- Product Listing (Shop Page)
+- Flash Sale & AI Personalized Recommendations
+- Add to Cart with Quantity Selector
+- Shopping Cart (Increase / Decrease quantity)
+- Checkout & Payment Processing
+- Real-time Session & Event Tracking
 
 ## AI Prediction Engine
-
 - Real-Time Session Monitoring
-- Customer Behavior Analysis
-- Feature Extraction
-- Abandonment Risk Prediction
-- Risk Score Generation
-- Risk Explanation
-- Intelligent Decision Recommendation
+- Customer Behavior Event Tracking
+- Feature Extraction from session events
+- Abandonment Risk Prediction (XGBoost)
+- Risk Score & Risk Level Generation
+- Scenario Detection (Payment Failure, Checkout Hesitation, Price Sensitivity, etc.)
+- Intelligent Action Recommendation
 
-## Admin Dashboard
-
-- Dashboard Overview
-- Live Customer Sessions
+## Super Admin Dashboard
+- Dashboard Overview (Live Sessions, High Risk, Total Sessions, Customers)
+- Live Customer Sessions (Active / Inactive status)
 - High Risk Sessions
-- Session Details
+- Session Details with AI Recommendation
+- Accept / Ignore recommended action
 - Action History
-- Analytics
+- Analytics (Risk Breakdown, Scenario Distribution, Action Stats)
+- Trigger recovery via **Twilio SMS / Phone Call**
 
 ---
 
 # System Workflow
 
 ```text
-Customer Login
-      │
-      ▼
-Browse Products
-      │
-      ▼
-View Product
-      │
-      ▼
-Add to Cart
-      │
-      ▼
-Checkout
-      │
-      ▼
-Payment Attempt
-      │
-      ▼
-Store Session Events
-      │
-      ▼
-Machine Learning Prediction
-      │
-      ▼
-Risk Score
-      │
-      ▼
-Decision Agent
-      │
-      ▼
-Recommended Action
-      │
-      ▼
-Dashboard Update
+Customer Login / Guest Session
+            │
+            ▼
+      Browse Products
+            │
+            ▼
+       View Product
+            │
+            ▼
+       Add to Cart
+            │
+            ▼
+        Checkout
+            │
+            ▼
+     Payment Attempt
+            │
+            ▼
+  Store Session Events (MongoDB)
+            │
+            ▼
+ Machine Learning Prediction
+   (Features → Risk → Scenario)
+            │
+            ▼
+      Risk Score + Scenario
+            │
+            ▼
+     Decision Agent
+            │
+            ▼
+  Recommended Action
+            │
+            ▼
+ Super Admin Reviews Session
+            │
+     ┌──────┴──────┐
+     ▼             ▼
+  Accept         Ignore
+     │
+     ▼
+Twilio SMS / Call
+     │
+     ▼
+Dashboard + Action History Updated
 ```
 
 ---
@@ -94,33 +109,29 @@ Dashboard Update
 
 ## Frontend
 
-- React.js
-- Tailwind CSS
-- Axios
-- React Router
+React.js (Vite)
+React Router
+Axios
+Lucide React (Icons)
+Custom CSS
 
 ## Backend
 
-- Python
-- Flask
-- REST APIs
+Python
+Flask
+Flask-CORS
+REST APIs
 
 ## Database
 
-- MongoDB
+MongoDB Atlas
 
 ## Machine Learning
 
-- XGBoost
-- Scikit-learn
-- Pandas
-- NumPy
-
-## Notifications
-
-- Twilio
-- WhatsApp API
-- SMS API
+XGBoost
+Scikit-learn
+Pandas
+NumPy
 
 ---
 
@@ -216,26 +227,72 @@ Cart_Rescue/
 
 ---
 
+---
+
+## User Roles
+
+
+Role                       Access
+Customer                   Home, Shop, Cart, Checkout, Payment, Login, RegisterSuper AdminFull Admin Dashboard + ability to visit Shop
+Super Admin                Credentials
+
+
+## Default Super Admin Credentials
+textEmail   : admin@cartrescue.ai
+Password: Admin@123
+
+
+---
+
 # Machine Learning
 
-The prediction engine uses an **XGBoost Classifier** trained on customer session data.
+## Pipeline
+
+Session Events
+      ↓
+Feature Generation
+      ↓
+XGBoost Risk Scorer
+      ↓
+Scenario Detector
+      ↓
+Action Engine
+      ↓
+Final Decision (Risk + Scenario + Recommended Action)
+
 
 ### Features Used
 
-- Pages Visited
-- Time on Site
+- Number of Events
+- Product Views
+- Add to Cart Count
+- Checkout Started
+- Payment Attempts / Failures
 - Cart Value
-- Product Count
-- Checkout Attempts
-- Payment Attempts
-- Payment Failures
-- Purchase History
+- Average & Max Price
 
 ### Prediction Output
 
 - Risk Score
 - Predicted Reason
 - Recommended Action
+
+### Risk Levels
+
+- HIGH
+- MEDIUM
+- LOW
+
+### Detected Scenarios
+
+- Payment Failure
+- Checkout Hesitation
+- Price Sensitivity
+- Shipping Friction
+- Form Friction
+- Cart Abandonment Risk
+- Browsing
+
 
 ---
 
@@ -249,6 +306,18 @@ Possible recommendations include:
 - Offer Discount Coupon
 - Offer Free Shipping
 - Customer Support Assistance
+
+NO_ACTION
+SEND_CART_REMINDER
+SHOW_EXIT_INTENT_POPUP
+SHOW_LIMITED_TIME_DISCOUNT
+OFFER_FREE_SHIPPING
+OFFER_COD_OR_ALTERNATE_PAYMENT
+SHOW_TRUST_BADGES_AND_REVIEWS
+SHOW_PERSONALIZED_RECOMMENDATION
+
+When Super Admin Accepts an action, the system can trigger:
+Twilio SMS
 
 ---
 
