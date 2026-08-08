@@ -1,80 +1,24 @@
 from pymongo import MongoClient
-import os
-
-# ============================================================
-# MongoDB Configuration
-# ============================================================
-
-MONGO_URI = os.getenv(
-    "MONGO_URI",
-    "YOUR_MONGODB_ATLAS_CONNECTION_STRING"
-)
-
-DATABASE_NAME = "cart_rescue"
-
-# ============================================================
-# MongoDB Connection
-# ============================================================
+from config import MONGO_URI, MONGO_DB
 
 client = MongoClient(MONGO_URI)
-
-db = client[DATABASE_NAME]
-
-print("MongoDB connection initialized.")
-
-# ============================================================
-# Collections
-# ============================================================
+db = client[MONGO_DB]
 
 sessions_collection = db["sessions"]
-
 events_collection = db["events"]
-
 decisions_collection = db["decisions"]
-
-
-# ============================================================
-# Database Getter
-# ============================================================
+users_collection = db["users"]
+products_collection = db["products"]
+carts_collection = db["carts"]
 
 def get_database():
     return db
 
-
-# ============================================================
-# Collection Getters
-# ============================================================
-
-def get_sessions_collection():
-    return sessions_collection
-
-
-def get_events_collection():
-    return events_collection
-
-
-def get_decisions_collection():
-    return decisions_collection
-
-
-# ============================================================
-# Connection Test
-# ============================================================
-
 def test_connection():
-
     try:
-
         client.admin.command("ping")
-
-        print("MongoDB connection test successful.")
-
+        print("✅ MongoDB connected")
         return True
-
     except Exception as e:
-
-        print("MongoDB connection test failed.")
-
-        print(e)
-
+        print("❌ MongoDB connection failed:", e)
         return False

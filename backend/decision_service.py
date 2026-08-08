@@ -22,31 +22,28 @@ Final Decision
 import sys
 from pathlib import Path
 
+CURRENT_DIR = Path(__file__).resolve().parent
+PROJECT_DIR = CURRENT_DIR.parent
+ML_DIR = PROJECT_DIR / "ml"
+REALTIME_DIR = ML_DIR / "realtime"
+
+if str(REALTIME_DIR) not in sys.path:
+    sys.path.insert(0, str(REALTIME_DIR))
+
+from realtime_features import generate_features
+from risk_scorer import score_session
+from scenario_detector import detect_scenario
+from action_engine import recommend_action
 
 # ============================================================
 # PATH CONFIGURATION
 # ============================================================
-
-CURRENT_DIR = Path(__file__).resolve().parent
-
-PROJECT_DIR = CURRENT_DIR.parent
-
-ML_DIR = PROJECT_DIR / "ml"
-REALTIME_DIR = ML_DIR / "realtime"
-
-
-if str(REALTIME_DIR) not in sys.path:
-    sys.path.insert(0, str(REALTIME_DIR))
 
 
 # ============================================================
 # IMPORT ML COMPONENTS
 # ============================================================
 
-from realtime_features import generate_features
-from risk_scorer import score_session
-from scenario_detector import detect_scenario
-from action_engine import recommend_action
 
 
 # ============================================================
