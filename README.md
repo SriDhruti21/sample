@@ -126,95 +126,93 @@ Dashboard Update
 
 # Project Structure
 
-```text
-Cart-Rescue/
+Cart_Rescue/
+│
+├── backend/
+│   ├── routes/
+│   │   ├── admin_routes.py         
+│   │   ├── auth_routes.py           
+│   │   ├── event_routes.py          
+│   │   ├── product_routes.py        
+│   │   └── session_routes.py        
+│   │
+│   ├── app.py                      
+│   ├── config.py                    
+│   ├── database.py                  
+│   ├── decision_service.py         
+│   ├── session_manager.py           
+│   ├── twilio_service.py            
+│   ├── create_admin.py              
+│   ├── fix_admin.py                 
+│   ├── test_api.py                 
+│   ├── requirements.txt
+│   └── .env                       
 │
 ├── frontend/
-│   │
 │   ├── public/
 │   │
 │   ├── src/
-│   │   │
 │   │   ├── assets/
+│   │   │
 │   │   ├── components/
+│   │   │   ├── AddToCartButton.jsx  
+│   │   │   ├── Categories.jsx
+│   │   │   ├── FeaturedProducts.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Hero.jsx
 │   │   │   ├── Navbar.jsx
-│   │   │   ├── Sidebar.jsx
-│   │   │   ├── ProductCard.jsx
-│   │   │   ├── ProductGrid.jsx
-│   │   │   ├── CartItem.jsx
-│   │   │   ├── SessionCard.jsx
-│   │   │   ├── SessionTable.jsx
-│   │   │   ├── RiskBadge.jsx
-│   │   │   ├── RiskScore.jsx
-│   │   │   ├── RiskExplanation.jsx
-│   │   │   ├── RecommendedAction.jsx
-│   │   │   ├── MetricCard.jsx
-│   │   │   └── Loading.jsx
+│   │   │   ├── Newsletter.jsx
+│   │   │   └── Testimonials.jsx
+│   │   │
+│   │   ├── context/
+│   │   │   └── SessionContext.jsx  
 │   │   │
 │   │   ├── pages/
+│   │   │   ├── admin/
+│   │   │   │   ├── AdminLayout.jsx
+│   │   │   │   ├── AdminDashboard.jsx
+│   │   │   │   ├── LiveSessions.jsx
+│   │   │   │   ├── HighRiskSessions.jsx
+│   │   │   │   ├── SessionDetail.jsx     
+│   │   │   │   ├── ActionHistory.jsx
+│   │   │   │   ├── Analytics.jsx
+│   │   │   │   └── Admin.css
+│   │   │   │
+│   │   │   ├── Cart.jsx             
+│   │   │   ├── Home.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── Shop.jsx
+│   │   │   ├── Auth.css
+│   │   │   └── Cart.css
 │   │   │
-│   │   │── customer/
-│   │   │     ├── Login.jsx
-│   │   │     ├── Home.jsx
-│   │   │     ├── ProductListing.jsx
-│   │   │     ├── ProductDetails.jsx
-│   │   │     ├── Cart.jsx
-│   │   │     └── Checkout.jsx
-│   │   │
-│   │   └── dashboard/
-│   │         ├── Dashboard.jsx
-│   │         ├── LiveSessions.jsx
-│   │         ├── SessionDetails.jsx
-│   │         ├── HighRiskSessions.jsx
-│   │         ├── ActionHistory.jsx
-│   │         └── Analytics.jsx
+│   │   ├── App.jsx                
+│   │   ├── App.css
+│   │   ├── index.css
+│   │   └── main.jsx
 │   │
-│   ├── App.jsx
-│   ├── main.jsx
-│   ├── index.css
+│   ├── index.html
 │   ├── package.json
-│   ├── tailwind.config.js
-│   ├── postcss.config.js
 │   └── vite.config.js
 │
-├── backend/
-│   │
-│   ├── app.py
-│   ├── database.py
-│   ├── ml_model.py
-│   ├── policy.py
-│   ├── twilio_config.py
-│   ├── requirements.txt
-│   └── uploads/
-│
 ├── ml/
+│   ├── datasets/                  
+│   ├── realtime/
+│   │   ├── realtime_features.py    
+│   │   ├── risk_scorer.py           
+│   │   ├── scenario_detector.py    
+│   │   └── action_engine.py         
 │   │
-│   ├── datasets/
-│   │   ├── waqi/
-│   │   ├── wafaa/
-│   │   ├── yashwant/
-│   │   └── arashnic/
+│   ├── saved_models/
+│   │   └── xgboost.pkl              
 │   │
-│   ├── preprocessing.py
 │   ├── feature_engineering.py
-│   │
-│   ├── logistic_regression.py
-│   ├── random_forest.py
+│   ├── preprocessing.py
 │   ├── xgboost_model.py
-│   │
-│   ├── compare_models.py
-│   ├── explain_model.py
-│   │
-│   ├── final_training_dataset.csv
-│   │
-│   └── saved_models/
-│       ├── logistic_regression.pkl
-│       ├── random_forest.pkl
-│       ├── xgboost.pkl
-│       └── scaler.pkl
+│   └── ...
 │
-├── README.md
-```
+├── .gitignore
+└── README.md
 
 ---
 
